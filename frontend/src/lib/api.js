@@ -56,6 +56,8 @@ export const api = {
   login: (email, password) => request('/api/auth/login', { method: 'POST', body: { email, password } }),
   demoLogin: (email) => request('/api/auth/demo-login', { method: 'POST', body: { email } }),
   register: (payload) => request('/api/auth/register', { method: 'POST', body: payload }),
+  forgotPassword: (email) => request('/api/auth/forgot-password', { method: 'POST', body: { email } }),
+  resetPassword: (payload) => request('/api/auth/reset-password', { method: 'POST', body: payload }),
   me: () => request('/api/auth/me'),
   async download(path, filename) {
     const blob = await this.raw(path);

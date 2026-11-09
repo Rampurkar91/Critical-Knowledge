@@ -67,3 +67,31 @@ def decode_access_token(token: str) -> dict[str, Any]:
         issuer="knowledgebridge",
         options={"require": ["exp", "iat", "sub"]},
     )
+
+
+def create_password_reset_token(email: str) -> str:
+    now = datetime.now(timezone.utc)
+    payload: dict[str, Any] = {
+        "sub": email,
+        "purpose": "password_reset",
+        "iat": int(now.timestamp()),
+        "exp": int((now + timedelta(minutes=30)).timestamp()),
+        "iss": "knowledgebridge",
+    }
+    return jwt.encode(payload, settings.jwt_secret, algorithm=settings.jwt_algorithm)
+
+
+def verify_password_reset_token(token: str) -> str | None:
+    try:
+        payload = jwt.decode(
+            token,
+            settings.jwt_secret,
+            algorithms=[settings.jwt_algorithm],
+            issuer="knowledgebridge",
+            options={"require": ["exp", "iat", "sub"]},
+        )
+        if payload.get("purpose") != "password_reset":
+            return None
+        return str(payload.get("sub"))
+    except (jwt.PyJWTError, ValueError, TypeError):
+        return None
