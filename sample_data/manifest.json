@@ -1,0 +1,43 @@
+{
+  "dataset_name": "Atlas Migration — synthetic demonstration dataset",
+  "notice": "All records are synthetic demonstration data. No real credentials, customer records or private documents are included.",
+  "version": "1.0",
+  "project": {
+    "key": "ATLAS",
+    "name": "Atlas Migration",
+    "description": "A realistic synthetic migration project used to demonstrate reconstruction, verification and secure continuity.",
+    "status": "active",
+    "is_demo": true
+  },
+  "sources": [
+    {"file": "01-kickoff-notes.md", "type": "meeting_note"},
+    {"file": "02-decision-log.md", "type": "decision_log"},
+    {"file": "03-task-board.md", "type": "task_export"},
+    {"file": "04-architecture-notes.md", "type": "project_document"},
+    {"file": "05-risk-register.md", "type": "risk_register"},
+    {"file": "06-chat-export.md", "type": "chat_export"},
+    {"file": "07-github-activity.md", "type": "github_export"},
+    {"file": "08-public-onboarding-brief.md", "type": "project_document"},
+    {"file": "09-restricted-security-review.md", "type": "security_review"},
+    {"file": "10-departing-member-notes.md", "type": "handover_note"}
+  ],
+  "demo_users": [
+    {"email": "manager@knowledgebridge.demo", "full_name": "Meera Iyer", "role": "project_manager", "clearance": 3},
+    {"email": "lead@knowledgebridge.demo", "full_name": "Neha Kulkarni", "role": "tech_lead", "clearance": 2},
+    {"email": "engineer@knowledgebridge.demo", "full_name": "Aarav Deshmukh", "role": "incoming_engineer", "clearance": 1},
+    {"email": "analyst@knowledgebridge.demo", "full_name": "Isha Joshi", "role": "incoming_analyst", "clearance": 0},
+    {"email": "auditor@knowledgebridge.demo", "full_name": "Rohan Patil", "role": "auditor", "clearance": 2}
+  ],
+  "expected_conditions": {
+    "minimum_tasks": 10,
+    "minimum_decisions": 5,
+    "minimum_dependencies": 3,
+    "minimum_risks_or_blockers": 3,
+    "deliberate_conflict_keys": ["task.KB-104.owner", "api.rate_limit"],
+    "outdated_external_refs": ["DEC-001", "RISK-002"],
+    "unsupported_external_refs": ["F-301"],
+    "unfinished_external_refs": ["UF-001", "UF-002", "UF-003", "UF-004", "UF-005"],
+    "unresolved_question_refs": ["Q-001", "Q-002", "Q-003", "Q-004", "Q-005"],
+    "restricted_sentinels": ["RESTRICTED-CANARY-9F3A"]
+  }
+}

@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+.coverage
+htmlcov/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+.vite/
+npm-debug.log*
+yarn-error.log*
+
+# Runtime data
+*.db
+*.sqlite
+*.sqlite3
+database/*.db
+.env
+.env.local
+*.log
+.DS_Store
+
+# Local generated artifacts
+reports/*.txt
+!reports/pytest-output.txt
+reports/*.html
+!reports/evaluation.json
+!reports/optional_integrations.json
+
+# Secrets and uploads
+uploads/
+*.pem
+*.key
+*.p12

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" width="1200" height="650" role="img" aria-label="KnowledgeBridge core data model diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 700 28px sans-serif; fill: #0b1f3a; }
+      .sub { font: 400 14px sans-serif; fill: #64748b; }
+      .entity { fill: #ffffff; stroke: #0f766e; stroke-width: 2; rx: 12; }
+      .core { fill: #ccfbf1; stroke: #0f766e; stroke-width: 3; rx: 12; }
+      .label { font: 700 15px sans-serif; fill: #0b1f3a; text-anchor: middle; }
+      .small { font: 400 11px sans-serif; fill: #475569; text-anchor: middle; }
+      .arrow { stroke: #0f766e; stroke-width: 2; marker-end: url(#arrow); }
+      .rel { font: 400 11px sans-serif; fill: #0f766e; text-anchor: middle; }
+      .note { font: 400 13px sans-serif; fill: #334155; }
+    </style>
+  </defs>
+  <rect width="1200" height="650" fill="#f8fafc"/>
+  <text x="40" y="48" class="title">KnowledgeBridge — core data model</text>
+  <text x="40" y="74" class="sub">17 SQLAlchemy tables; sensitivity is carried on every retrievable object.</text>
+
+  <rect x="40" y="120" width="180" height="72" class="entity"/>
+  <text x="130" y="150" class="label">Organization</text>
+  <text x="130" y="172" class="small">users / projects</text>
+
+  <rect x="40" y="250" width="180" height="72" class="entity"/>
+  <text x="130" y="280" class="label">User</text>
+  <text x="130" y="302" class="small">PBKDF2 hash / JWT subject</text>
+
+  <rect x="40" y="380" width="180" height="72" class="entity"/>
+  <text x="130" y="410" class="label">Project</text>
+  <text x="130" y="432" class="small">key / org / status</text>
+
+  <rect x="270" y="120" width="180" height="72" class="entity"/>
+  <text x="360" y="150" class="label">ProjectMember</text>
+  <text x="360" y="172" class="small">role / clearance / ABAC</text>
+
+  <rect x="270" y="250" width="180" height="72" class="entity"/>
+  <text x="360" y="280" class="label">SourceDocument</text>
+  <text x="360" y="302" class="small">classification / SHA-256</text>
+
+  <rect x="270" y="380" width="180" height="72" class="entity"/>
+  <text x="360" y="410" class="label">EvidenceSpan</text>
+  <text x="360" y="432" class="small">quote / start_char / end_char</text>
+
+  <rect x="510" y="250" width="180" height="72" class="core"/>
+  <text x="600" y="280" class="label">Claim</text>
+  <text x="600" y="302" class="small">status / score / rationale</text>
+
+  <rect x="510" y="120" width="180" height="72" class="entity"/>
+  <text x="600" y="150" class="label">Task / Risk</text>
+  <text x="600" y="172" class="small">owner / priority / due</text>
+
+  <rect x="510" y="380" width="180" height="72" class="entity"/>
+  <text x="600" y="410" class="label">ConflictRecord</text>
+  <text x="600" y="432" class="small">value_a / value_b / status</text>
+
+  <rect x="760" y="120" width="180" height="72" class="entity"/>
+  <text x="850" y="150" class="label">KnowledgeNode</text>
+  <text x="850" y="172" class="small">node_key / valid_from</text>
+
+  <rect x="760" y="250" width="180" height="72" class="entity"/>
+  <text x="850" y="280" class="label">KnowledgeEdge</text>
+  <text x="850" y="302" class="small">relation / valid_from</text>
+
+  <rect x="760" y="380" width="180" height="72" class="entity"/>
+  <text x="850" y="410" class="label">Handover</text>
+  <text x="850" y="432" class="small">draft / approved / shared</text>
+
+  <rect x="990" y="120" width="170" height="72" class="entity"/>
+  <text x="1075" y="150" class="label">HandoverItem</text>
+  <text x="1075" y="172" class="small">ack / start / complete</text>
+
+  <rect x="990" y="250" width="170" height="72" class="entity"/>
+  <text x="1075" y="280" class="label">ClaimReview</text>
+  <text x="1075" y="302" class="small">approve / reject / correct</text>
+
+  <rect x="990" y="380" width="170" height="72" class="entity"/>
+  <text x="1075" y="410" class="label">AuditLog</text>
+  <text x="1075" y="432" class="small">prev_hash / event_hash</text>
+
+  <line x1="220" y1="156" x2="270" y2="156" class="arrow"/>
+  <line x1="130" y1="192" x2="130" y2="250" class="arrow"/>
+  <line x1="130" y1="322" x2="130" y2="380" class="arrow"/>
+  <line x1="220" y1="416" x2="270" y2="416" class="arrow"/>
+  <line x1="450" y1="286" x2="510" y2="286" class="arrow"/>
+  <line x1="450" y1="416" x2="510" y2="416" class="arrow"/>
+  <line x1="600" y1="250" x2="600" y2="192" class="arrow"/>
+  <line x1="690" y1="286" x2="760" y2="286" class="arrow"/>
+  <line x1="690" y1="416" x2="760" y2="416" class="arrow"/>
+  <line x1="850" y1="192" x2="850" y2="250" class="arrow"/>
+  <line x1="940" y1="286" x2="990" y2="286" class="arrow"/>
+  <line x1="940" y1="416" x2="990" y2="416" class="arrow"/>
+  <line x1="1075" y1="192" x2="1075" y2="250" class="arrow"/>
+  <line x1="1075" y1="322" x2="1075" y2="380" class="arrow"/>
+
+  <text x="245" y="148" class="rel">has</text>
+  <text x="480" y="278" class="rel">supports</text>
+  <text x="480" y="408" class="rel">links</text>
+  <text x="725" y="278" class="rel">materialises</text>
+  <text x="725" y="408" class="rel">detects</text>
+  <text x="965" y="278" class="rel">contains</text>
+  <text x="965" y="408" class="rel">records</text>
+
+  <text x="40" y="510" class="note">Classification: 0 public, 1 internal, 2 confidential, 3 restricted — stored on sources, claims, spans, nodes, edges, tasks, risks and handovers.</text>
+  <text x="40" y="535" class="note">Every handover statement is generated only from active, approved, Verified claims with permitted evidence citations.</text>
+  <text x="40" y="560" class="note">Human corrections create versioned replacement claims; the original claim is marked inactive/outdated rather than deleted.</text>
+</svg>

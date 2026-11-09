@@ -1,0 +1,35 @@
+import { useMemo, useState } from 'react';
+import { ShieldCheck, RefreshCw, FileQuestion, AlertTriangle } from 'lucide-react';
+import { api, projectPath } from '../lib/api';
+import { useApiData } from '../lib/useApi';
+import { useProject } from '../context/ProjectContext';
+import { useToast } from '../context/ToastContext';
+import { Badge, Card, Drawer, EmptyState, ErrorPanel, EvidenceList, Loading, ProgressBar, SectionHeader, ScoreRationale, StatCard, StatusPill, formatDate } from '../components/ui';
+
+export default function VerificationDashboard() {
+  const { projectId, can } = useProject();
+  const { notify } = useToast();
+  const [status, setStatus] = useState('all');
+  const [selected, setSelected] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const summary = useApiData(() => api.get(projectPath(projectId, '/verification/summary')), [projectId], { enabled: Boolean(projectId) });
+  const claims = useApiData(() => api.get(projectPath(projectId, `/claims${status === 'all' ? '' : `?verification_status=${encodeURIComponent(status)}`}`)), [projectId, status], { enabled: Boolean(projectId) });
+  const run = async () => { setBusy(true); try { await api.post(projectPath(projectId, '/verification/run'), {}); notify('Verification rules re-run.', 'success'); summary.refresh(); claims.refresh(); } catch (e) { notify(e.message, 'error'); } finally { setBusy(false); } };
+  const items = claims.data?.items || [];
+  const statusData = useMemo(() => Object.entries(summary.data?.status_counts || {}), [summary.data]);
+  if (!projectId) return <EmptyState title="No project selected" description="Select a project to review evidence reliability." />;
+  if (summary.loading && !summary.data) return <Loading />;
+  if (summary.error) return <ErrorPanel error={summary.error} onRetry={summary.refresh} />;
+  return (
+    <div className="space-y-6 fade-in">
+      <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">Innovation 2 · Reliability engine</p><h2 className="mt-1 text-2xl font-extrabold tracking-tight text-navy-950">Every important statement, traceable to evidence</h2><p className="muted mt-1">Verified · Needs Review · Conflicting · Unsupported · Outdated.</p></div><button className="btn-outline" disabled={!can('verification.run') || busy} onClick={run}><RefreshCw className="h-4 w-4" /> {busy ? 'Running…' : 'Run verification'}</button></div>
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5"><StatCard icon={ShieldCheck} label="Claims evaluated" value={summary.data.claims_evaluated} /><StatCard icon={ShieldCheck} label="Verified" value={summary.data.status_counts.Verified || 0} tone="teal" /><StatCard icon={AlertTriangle} label="Conflicting" value={summary.data.status_counts.Conflicting || 0} tone="rose" /><StatCard icon={FileQuestion} label="Unsupported" value={summary.data.status_counts.Unsupported || 0} tone="violet" /><StatCard icon={ShieldCheck} label="Avg. heuristic score" value={summary.data.average_reliability_score} hint="not a probability" tone="navy" /></div>
+      <Card className="p-5"><SectionHeader title="Status distribution" subtitle="Deterministic categories from evidence links, contradiction rules and explicit supersession." icon={ShieldCheck} /><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{['Verified','Needs Review','Conflicting','Unsupported','Outdated'].map((name) => { const value = summary.data.status_counts[name] || 0; const pct = summary.data.claims_evaluated ? (value / summary.data.claims_evaluated) * 100 : 0; return <div key={name} className="rounded-xl border border-slate-200 p-3"><div className="flex items-center justify-between"><StatusPill status={name} /><strong>{value}</strong></div><div className="mt-3"><ProgressBar value={pct} tone="navy" /></div></div>; })}</div><p className="mt-4 text-xs text-slate-500">{summary.data.score_disclaimer} Unsupported claim rate: {summary.data.unsupported_claim_rate}.</p></Card>
+      <Card className="overflow-hidden"><div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4"><SectionHeader title="Claim-level evidence" subtitle="Select a row to inspect citations and score reasons." icon={FileQuestion} /><select className="input !w-auto !py-2" value={status} onChange={(e) => setStatus(e.target.value)}><option value="all">All statuses</option>{['Verified','Needs Review','Conflicting','Unsupported','Outdated'].map((s) => <option key={s}>{s}</option>)}</select></div>
+        {claims.loading && <Loading />}{claims.error && <div className="px-5"><ErrorPanel error={claims.error} onRetry={claims.refresh} /></div>}
+        <div className="overflow-x-auto"><table className="w-full min-w-[920px] border-collapse"><thead><tr className="table-head"><th className="px-4 py-3">Claim</th><th className="px-4 py-3">Status</th><th className="px-4 py-3">Score</th><th className="px-4 py-3">Evidence</th><th className="px-4 py-3">Source date</th><th className="px-4 py-3">Classification</th></tr></thead><tbody>{items.map((claim) => <tr key={claim.id} className="cursor-pointer hover:bg-teal-50/40" onClick={() => setSelected(claim)}><td className="table-cell"><p className="font-semibold text-navy-900">{claim.statement}</p><p className="mt-1 text-[11px] text-slate-500">{claim.external_ref} · {claim.claim_type.replaceAll('_',' ')} · {claim.subject}</p></td><td className="table-cell"><StatusPill status={claim.verification_status} /></td><td className="table-cell"><div className="flex items-center gap-2"><strong>{claim.reliability_score}</strong><div className="w-16"><ProgressBar value={claim.reliability_score} /></div></div></td><td className="table-cell">{claim.evidence?.length || 0} span(s)</td><td className="table-cell">{formatDate(claim.source_timestamp)}</td><td className="table-cell"><Badge tone="navy">{claim.sensitivity}</Badge></td></tr>)}</tbody></table>{!items.length && <div className="p-5"><EmptyState title="No claims match this filter" description="Change the status filter or run extraction." /></div>}</div>
+      </Card>
+      <Drawer open={Boolean(selected)} onClose={() => setSelected(null)} title={selected?.external_ref || 'Claim'} subtitle={selected?.verification_status} wide>{selected && <div className="space-y-5"><div className="rounded-xl border border-slate-200 bg-slate-50 p-4"><p className="text-sm font-semibold leading-relaxed text-navy-900">{selected.statement}</p><div className="mt-3 flex flex-wrap gap-2"><StatusPill status={selected.verification_status} /><Badge tone="navy">{selected.review_status}</Badge><Badge tone="teal">heuristic {selected.reliability_score}</Badge></div></div><div><h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Original evidence</h4><EvidenceList items={selected.evidence} /></div><div><h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Score rationale</h4><ScoreRationale items={selected.score_rationale} /></div></div>}</Drawer>
+    </div>
+  );
+}

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" width="1200" height="470" role="img" aria-label="KnowledgeBridge ten-stage workflow diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 700 28px sans-serif; fill: #0b1f3a; }
+      .sub { font: 400 14px sans-serif; fill: #64748b; }
+      .stage { fill: #ffffff; stroke: #0f766e; stroke-width: 2; rx: 14; }
+      .num { font: 700 16px sans-serif; fill: #0f766e; text-anchor: middle; }
+      .label { font: 700 14px sans-serif; fill: #0b1f3a; text-anchor: middle; }
+      .small { font: 400 11px sans-serif; fill: #475569; text-anchor: middle; }
+      .arrow { stroke: #0f766e; stroke-width: 2.5; marker-end: url(#arrow); }
+      .note { font: 400 13px sans-serif; fill: #334155; }
+    </style>
+  </defs>
+  <rect width="1200" height="470" fill="#f8fafc"/>
+  <text x="40" y="48" class="title">KnowledgeBridge — 10-stage handover workflow</text>
+  <text x="40" y="74" class="sub">Human approval gates sharing; incoming members never receive unauthorised information.</text>
+
+  <g>
+    <rect x="40" y="120" width="190" height="95" class="stage"/>
+    <text x="135" y="148" class="num">1</text>
+    <text x="135" y="172" class="label">Project + roles</text>
+    <text x="135" y="194" class="small">members / clearance</text>
+
+    <rect x="270" y="120" width="190" height="95" class="stage"/>
+    <text x="365" y="148" class="num">2</text>
+    <text x="365" y="172" class="label">Source integration</text>
+    <text x="365" y="194" class="small">upload / GitHub</text>
+
+    <rect x="500" y="120" width="190" height="95" class="stage"/>
+    <text x="595" y="148" class="num">3</text>
+    <text x="595" y="172" class="label">Knowledge extraction</text>
+    <text x="595" y="194" class="small">claims + evidence</text>
+
+    <rect x="730" y="120" width="190" height="95" class="stage"/>
+    <text x="825" y="148" class="num">4</text>
+    <text x="825" y="172" class="label">Reconstruction</text>
+    <text x="825" y="194" class="small">temporal graph</text>
+
+    <rect x="960" y="120" width="190" height="95" class="stage"/>
+    <text x="1055" y="148" class="num">5</text>
+    <text x="1055" y="172" class="label">Verification</text>
+    <text x="1055" y="194" class="small">conflict / outdated</text>
+  </g>
+
+  <line x1="230" y1="168" x2="270" y2="168" class="arrow"/>
+  <line x1="460" y1="168" x2="500" y2="168" class="arrow"/>
+  <line x1="690" y1="168" x2="730" y2="168" class="arrow"/>
+  <line x1="920" y1="168" x2="960" y2="168" class="arrow"/>
+  <path d="M1055 215 L1055 255 L135 255 L135 285" fill="none" class="arrow"/>
+
+  <g>
+    <rect x="40" y="285" width="190" height="95" class="stage"/>
+    <text x="135" y="313" class="num">6</text>
+    <text x="135" y="337" class="label">Human review</text>
+    <text x="135" y="359" class="small">correct / approve</text>
+
+    <rect x="270" y="285" width="190" height="95" class="stage"/>
+    <text x="365" y="313" class="num">7</text>
+    <text x="365" y="337" class="label">Handover generation</text>
+    <text x="365" y="359" class="small">role-specific draft</text>
+
+    <rect x="500" y="285" width="190" height="95" class="stage"/>
+    <text x="595" y="313" class="num">8</text>
+    <text x="595" y="337" class="label">Controlled sharing</text>
+    <text x="595" y="359" class="small">approve → share</text>
+
+    <rect x="730" y="285" width="190" height="95" class="stage"/>
+    <text x="825" y="313" class="num">9</text>
+    <text x="825" y="337" class="label">Continuation</text>
+    <text x="825" y="359" class="small">next actions / items</text>
+
+    <rect x="960" y="285" width="190" height="95" class="stage"/>
+    <text x="1055" y="313" class="num">10</text>
+    <text x="1055" y="337" class="label">Continuity tracking</text>
+    <text x="1055" y="359" class="small">ack / audit / rates</text>
+  </g>
+
+  <line x1="230" y1="333" x2="270" y2="333" class="arrow"/>
+  <line x1="460" y1="333" x2="500" y2="333" class="arrow"/>
+  <line x1="690" y1="333" x2="730" y2="333" class="arrow"/>
+  <line x1="920" y1="333" x2="960" y2="333" class="arrow"/>
+
+  <text x="40" y="425" class="note">Gate: stages 6–8 require manager review/approval before any handover becomes visible to its recipient.</text>
+  <text x="40" y="448" class="note">Policy: classification, claim type and tag filters are applied before retrieval in every stage.</text>
+</svg>

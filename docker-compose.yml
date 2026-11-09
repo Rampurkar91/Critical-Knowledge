@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: knowledgebridge
+      POSTGRES_USER: knowledgebridge
+      POSTGRES_PASSWORD: knowledgebridge
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledgebridge -d knowledgebridge"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    environment:
+      APP_NAME: KnowledgeBridge
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      DATABASE_URL: postgresql+psycopg2://knowledgebridge:knowledgebridge@postgres:5432/knowledgebridge
+      JWT_SECRET: ${JWT_SECRET:-change-this-in-production-knowledgebridge-demo}
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRE_MINUTES: 720
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-DemoPass!2026}
+      SEED_DEMO_DATA: "true"
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GITHUB_API_BASE: ${GITHUB_API_BASE:-https://api.github.com}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      STALE_AFTER_DAYS: 120
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
