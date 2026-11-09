@@ -1,0 +1,4 @@
+# Root requirements for local development and tests.
+-r backend/requirements.txt
+pytest==8.3.5
+httpx==0.28.1

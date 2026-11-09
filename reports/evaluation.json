@@ -1,0 +1,363 @@
+{
+  "generated_at": "2026-11-09T08:55:24Z",
+  "dataset": "Human-authored gold annotations for the synthetic demonstration dataset. These are expected labels, not measured outcomes.",
+  "test_suite": {
+    "command": ".venv/bin/python -m pytest -q",
+    "returncode": 0,
+    "passed": 11,
+    "failed": 0,
+    "output_tail": "...........                                                              [100%]\n11 passed in 9.71s"
+  },
+  "database_metrics": {
+    "dataset": "synthetic demonstration dataset (Atlas Migration)",
+    "extraction": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 70,
+      "fp": 0,
+      "fn": 0,
+      "expected_labels": 70,
+      "actual_non_dependency_claims": 70,
+      "derived_dependency_claims": 24,
+      "missing_labels": [],
+      "unexpected_labels": []
+    },
+    "evidence": {
+      "spans": 93,
+      "exact_offset_matches": 93,
+      "exact_offset_accuracy": 1.0,
+      "active_claims": 94,
+      "claims_with_evidence_links": 93
+    },
+    "retrieval": {
+      "queries": 5,
+      "mean_precision_at_5": 0.44,
+      "mean_recall_at_5": 1.0,
+      "rows": [
+        {
+          "query": "Who owns task KB-104?",
+          "returned_sources": [
+            "SRC-003",
+            "SRC-006",
+            "SRC-003",
+            "SRC-003",
+            "SRC-003"
+          ],
+          "relevant_sources": [
+            "SRC-003",
+            "SRC-006"
+          ],
+          "precision_at_5": 0.4,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What is the current deployment target?",
+          "returned_sources": [
+            "SRC-004",
+            "SRC-001",
+            "SRC-003",
+            "SRC-010",
+            "SRC-005"
+          ],
+          "relevant_sources": [
+            "SRC-001",
+            "SRC-004"
+          ],
+          "precision_at_5": 0.4,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What is the API rate limit for the customer import?",
+          "returned_sources": [
+            "SRC-003",
+            "SRC-004",
+            "SRC-001",
+            "SRC-007",
+            "SRC-005"
+          ],
+          "relevant_sources": [
+            "SRC-003",
+            "SRC-004"
+          ],
+          "precision_at_5": 0.4,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Which vendor sandbox expiry is current?",
+          "returned_sources": [
+            "SRC-005",
+            "SRC-004",
+            "SRC-003",
+            "SRC-001",
+            "SRC-003"
+          ],
+          "relevant_sources": [
+            "SRC-004",
+            "SRC-005"
+          ],
+          "precision_at_5": 0.4,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What blocks the rollback rehearsal?",
+          "returned_sources": [
+            "SRC-010",
+            "SRC-003",
+            "SRC-005",
+            "SRC-002",
+            "SRC-007"
+          ],
+          "relevant_sources": [
+            "SRC-003",
+            "SRC-005",
+            "SRC-007"
+          ],
+          "precision_at_5": 0.6,
+          "recall_at_5": 1.0
+        }
+      ],
+      "restricted_query_docs_returned_to_engineer": 0,
+      "restricted_query_returned_source_refs": [],
+      "restricted_query_marker_hits": [],
+      "restricted_query_note": "A lexical match on the generic word 'restricted' may return an authorised internal document; the exact canary and hidden identifiers must not appear in its payload.",
+      "definition": "TF-IDF lexical retrieval over authorised claim/evidence documents, source-deduplicated, top_k=5."
+    },
+    "conflict_detection": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "detected_keys": [
+        "api.rate_limit",
+        "task.KB-104.owner"
+      ]
+    },
+    "outdated_detection": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "detected_refs": [
+        "DEC-001",
+        "RISK-002"
+      ]
+    },
+    "unsupported_detection": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "unsupported_claim_rate": 0.0106,
+      "detected_refs": [
+        "F-301"
+      ]
+    },
+    "verification_status_counts": {
+      "Outdated": 2,
+      "Needs Review": 87,
+      "Unsupported": 1,
+      "Conflicting": 4
+    },
+    "score_disclaimer_present_on_all_claims": true,
+    "graph": {
+      "nodes": 120,
+      "edges": 210,
+      "relation_counts": {
+        "supported_by": 93,
+        "decided_by": 9,
+        "supported_by_reason": 9,
+        "owned_by": 51,
+        "depends_on": 24,
+        "assigned_to": 15,
+        "tracks": 5,
+        "blocks": 2,
+        "supersedes": 2
+      },
+      "depends_on_edges": 24,
+      "restricted_nodes": 9,
+      "restricted_edges": 23,
+      "representative_gold_edges": 12,
+      "representative_gold_edges_found": 12,
+      "representative_gold_edge_recall": 1.0,
+      "all_edge_exact_match_rate": 0.0571,
+      "dependency_pair_metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 24,
+        "fp": 0,
+        "fn": 0
+      },
+      "note": "gold graph_edges is a representative subset, not an exhaustive edge annotation; all_edge_exact_match_rate is not precision."
+    }
+  },
+  "api_metrics": {
+    "workflow": {
+      "open_conflicts_resolved": 2,
+      "claims_bulk_approved": 89,
+      "handover_versions": 2,
+      "handover_status": "shared",
+      "handover_items_available": 14,
+      "continuation_actions_performed": 3,
+      "handovers_generated": 1
+    },
+    "handover_quality": {
+      "required_sections": 8,
+      "sections_present": 8,
+      "section_coverage": 1.0,
+      "statement_items_examined": 35,
+      "statement_items_with_evidence": 35,
+      "evidence_link_rate": 1.0,
+      "evidence_register_entries": 57,
+      "uncertainty_fields": [
+        "excluded_by_clearance",
+        "excluded_by_status",
+        "missing_evidence",
+        "unresolved_questions"
+      ],
+      "next_action_count": 5,
+      "checklist_count": 14,
+      "generated_from_claim_ids": 57,
+      "applied_filters": {
+        "max_clearance": 1,
+        "claim_types": [
+          "decision",
+          "task",
+          "owner",
+          "risk",
+          "blocker",
+          "dependency",
+          "unfinished_work",
+          "unresolved_question",
+          "contact",
+          "next_action",
+          "state_change"
+        ],
+        "allowed_tags": [
+          "backend",
+          "api",
+          "deployment",
+          "testing",
+          "integration",
+          "general"
+        ],
+        "role_scope": "incoming_engineer",
+        "review_status": "approved",
+        "verification_status": "Verified"
+      },
+      "definition": "Structural coverage and evidence-link checks on the generated handover; no human quality score."
+    },
+    "recommendation_relevance": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "exact_order_match": true,
+      "returned_actions": [
+        "NA-001",
+        "NA-002",
+        "NA-003",
+        "NA-006",
+        "NA-005"
+      ],
+      "expected_actions": [
+        "NA-001",
+        "NA-002",
+        "NA-003",
+        "NA-006",
+        "NA-005"
+      ],
+      "definition": "Priority-ranked next actions compared with hand-authored expected labels; not a human relevance study."
+    },
+    "continuity": {
+      "acknowledgement_rate": 0.0714,
+      "completion_rate": 0.0714,
+      "items_total": 14,
+      "items_acknowledged": 1,
+      "items_completed": 1,
+      "overdue_items": 2,
+      "open_questions": 2,
+      "handover_prep_seconds": {
+        "average": 3.0,
+        "maximum": 3,
+        "measurement": "Wall-clock from first seeded/ingested source to handover generation; automated run, not a human time study."
+      },
+      "human_correction_rate": 0.0,
+      "corrections": 0,
+      "reviews_total": 89,
+      "incoming_member_task_understanding": {
+        "measured": false,
+        "value": null,
+        "note": "Requires a human-in-the-loop study with incoming members; no value is invented."
+      },
+      "definition": "Workflow telemetry from the actual generated handover and audit/review tables."
+    },
+    "permission_enforcement": {
+      "channels_in_gold": [
+        "graph",
+        "search",
+        "ask",
+        "handover",
+        "export"
+      ],
+      "channels_tested": 9,
+      "restricted_marker_leaks": 0,
+      "channel_leaks": {
+        "engineer_graph": [],
+        "analyst_graph": [],
+        "engineer_search": [],
+        "engineer_ask": [],
+        "engineer_handover": [],
+        "engineer_export": [],
+        "manager_export": [],
+        "engineer_claims": [],
+        "engineer_tasks": []
+      },
+      "hidden_by_policy_engineer": {
+        "nodes": 31,
+        "edges": 87
+      },
+      "hidden_by_policy_analyst": {
+        "nodes": 113,
+        "edges": 202
+      },
+      "manager_can_see_restricted_graph": true,
+      "search_query_guard_applied": true,
+      "ask_question_guard_applied": false,
+      "ask_provider": "deterministic-local",
+      "permission_guard_audit_events": 4,
+      "denied_audit_events": 1,
+      "engineer_approve_status": 403,
+      "external_project_access_status": 404,
+      "hash_chain_continuity_valid": true,
+      "chain_check": "Verifies prev_hash links across the append-only log; payload hashes include a non-stored nonce and are not recomputed here.",
+      "correct_review_actions": 0,
+      "total_review_actions": 89
+    },
+    "api_observations": {
+      "health": {
+        "status": "ok",
+        "app": "KnowledgeBridge",
+        "environment": "evaluation",
+        "demo_mode": false,
+        "database": "sqlite"
+      },
+      "verification_status_categories": [
+        "Verified",
+        "Needs Review",
+        "Conflicting",
+        "Unsupported",
+        "Outdated"
+      ]
+    }
+  }
+}

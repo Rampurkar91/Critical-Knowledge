@@ -1,0 +1,52 @@
+{
+  "description": "Human-authored gold annotations for the synthetic demonstration dataset. These are expected labels, not measured outcomes.",
+  "extraction": {
+    "task": ["KB-101", "KB-102", "KB-103", "KB-104", "KB-105", "KB-106", "KB-107", "KB-108", "KB-109", "KB-110", "KB-111", "KB-112", "KB-113", "KB-114", "KB-900"],
+    "decision": ["DEC-001", "DEC-002", "DEC-003", "DEC-004", "DEC-005", "DEC-006", "DEC-007", "DEC-008", "DEC-900"],
+    "risk": ["RISK-001", "RISK-002", "RISK-003", "RISK-004", "RISK-005", "RISK-006", "RISK-900"],
+    "blocker": ["BLK-001", "BLK-002"],
+    "unfinished_work": ["UF-001", "UF-002", "UF-003", "UF-004", "UF-005"],
+    "unresolved_question": ["Q-001", "Q-002", "Q-003", "Q-004", "Q-005", "GH-201", "GH-202"],
+    "contact": ["C-001", "C-002", "C-003", "C-004"],
+    "owner": ["F-201", "F-202"],
+    "state_change": ["CHG-001", "CHG-002", "CHG-003", "CHG-004", "CHG-005", "CHG-006", "GIT-C1", "GIT-C2", "GIT-C3", "F-203", "F-204", "F-301", "F-900"],
+    "next_action": ["NA-001", "NA-002", "NA-003", "NA-004", "NA-005", "NA-006"]
+  },
+  "dependency_pairs": [
+    "KB-102|KB-101", "DEC-002|KB-101", "DEC-005|KB-108", "KB-103|KB-102",
+    "KB-104|KB-102", "KB-104|DEC-002", "KB-105|KB-103", "KB-105|KB-104",
+    "KB-106|KB-105", "KB-107|DEC-005", "KB-108|KB-107", "KB-110|KB-101",
+    "KB-111|RISK-002", "KB-112|KB-111", "KB-112|DEC-900", "NA-001|KB-104",
+    "DEC-006|Q-001", "NA-002|KB-105", "NA-003|KB-104", "GH-201|KB-105",
+    "GH-202|Q-001", "NA-004|KB-114", "NA-005|Q-005", "NA-006|KB-107"
+  ],
+  "conflict_keys": ["task.KB-104.owner", "api.rate_limit"],
+  "outdated_refs": ["DEC-001", "RISK-002"],
+  "unsupported_refs": ["F-301"],
+  "restricted_sentinels": ["RESTRICTED-CANARY-9F3A"],
+  "next_action_refs_for_incoming_engineer": ["NA-001", "NA-002", "NA-003", "NA-006", "NA-005"],
+  "graph_edges": [
+    {"source_key": "task:KB-103", "target_key": "task:KB-102", "relation": "depends_on"},
+    {"source_key": "task:KB-104", "target_key": "decision:DEC-002", "relation": "depends_on"},
+    {"source_key": "task:KB-105", "target_key": "task:KB-104", "relation": "depends_on"},
+    {"source_key": "task:KB-112", "target_key": "decision:DEC-900", "relation": "depends_on"},
+    {"source_key": "decision:DEC-006", "target_key": "decision:DEC-001", "relation": "supersedes"},
+    {"source_key": "risk:RISK-005", "target_key": "risk:RISK-002", "relation": "supersedes"},
+    {"source_key": "blocker:BLK-001", "target_key": "task:KB-104", "relation": "blocks"},
+    {"source_key": "decision:DEC-002", "target_key": "source:SRC-002", "relation": "supported_by"},
+    {"source_key": "decision:DEC-002", "target_key": "person:Arjun Rao", "relation": "decided_by"},
+    {"source_key": "task:KB-103", "target_key": "person:Priya Nair", "relation": "assigned_to"},
+    {"source_key": "unfinished:UF-002", "target_key": "task:KB-105", "relation": "tracks"},
+    {"source_key": "question:Q-001", "target_key": "person:Priya Nair", "relation": "owned_by"}
+  ],
+  "retrieval_queries": [
+    {"query": "Who owns task KB-104?", "relevant_sources": ["SRC-003", "SRC-006"]},
+    {"query": "What is the current deployment target?", "relevant_sources": ["SRC-001", "SRC-004"]},
+    {"query": "What is the API rate limit for the customer import?", "relevant_sources": ["SRC-003", "SRC-004"]},
+    {"query": "Which vendor sandbox expiry is current?", "relevant_sources": ["SRC-005", "SRC-004"]},
+    {"query": "What blocks the rollback rehearsal?", "relevant_sources": ["SRC-003", "SRC-005", "SRC-007"]}
+  ],
+  "handover_required_sections": ["current_state", "responsibilities", "key_decisions", "risks_and_dependencies", "open_questions", "next_actions", "checklist", "evidence"],
+  "permission_channels": ["graph", "search", "ask", "handover", "export"],
+  "human_metrics_requiring_study": ["incoming_member_task_understanding"]
+}

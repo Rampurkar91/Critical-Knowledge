@@ -1,0 +1,14 @@
+{
+  "name": "knowledgebridge-browser",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "capture": "node capture_screenshots.mjs",
+    "check:routes": "node check_routes.mjs"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "puppeteer-core": "^25.16.0"
+  }
+}

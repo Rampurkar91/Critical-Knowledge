@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" role="img" aria-label="KnowledgeBridge architecture diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/>
+    </marker>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1f3a"/>
+      <stop offset="100%" stop-color="#123c63"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 28px sans-serif; fill: #0b1f3a; }
+      .sub { font: 400 14px sans-serif; fill: #64748b; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+      .navy { fill: url(#navy); stroke: #0b1f3a; stroke-width: 2; rx: 14; }
+      .teal { fill: #ccfbf1; stroke: #0f766e; stroke-width: 2; rx: 14; }
+      .blue { fill: #e0f2fe; stroke: #0369a1; stroke-width: 2; rx: 14; }
+      .label { font: 700 15px sans-serif; fill: #0b1f3a; text-anchor: middle; }
+      .small { font: 400 12px sans-serif; fill: #475569; text-anchor: middle; }
+      .light { font: 700 15px sans-serif; fill: #ffffff; text-anchor: middle; }
+      .arrow { stroke: #0f766e; stroke-width: 2.5; marker-end: url(#arrow); }
+      .dashed { stroke: #0f766e; stroke-width: 2; stroke-dasharray: 6 5; marker-end: url(#arrow); }
+      .legend { font: 400 13px sans-serif; fill: #334155; }
+    </style>
+  </defs>
+  <rect width="1200" height="700" fill="#f8fafc"/>
+  <text x="40" y="48" class="title">KnowledgeBridge — system architecture</text>
+  <text x="40" y="74" class="sub">Authorise → Ingest → Extract → Reconstruct → Verify → Handover → Continue</text>
+
+  <rect x="40" y="120" width="200" height="90" class="navy"/>
+  <text x="140" y="155" class="light">React SPA</text>
+  <text x="140" y="180" class="small" fill="#e2e8f0">15 responsive pages</text>
+
+  <rect x="310" y="120" width="200" height="90" class="teal"/>
+  <text x="410" y="155" class="label">FastAPI API</text>
+  <text x="410" y="180" class="small">JWT + REST + OpenAPI</text>
+
+  <rect x="580" y="120" width="200" height="90" class="blue"/>
+  <text x="680" y="155" class="label">Permission layer</text>
+  <text x="680" y="180" class="small">RBAC / ABAC / redaction</text>
+
+  <rect x="850" y="120" width="200" height="90" class="box"/>
+  <text x="950" y="155" class="label">SQLAlchemy DB</text>
+  <text x="950" y="180" class="small">SQLite / PostgreSQL</text>
+
+  <line x1="240" y1="165" x2="310" y2="165" class="arrow"/>
+  <line x1="510" y1="165" x2="580" y2="165" class="arrow"/>
+  <line x1="780" y1="165" x2="850" y2="165" class="arrow"/>
+
+  <rect x="40" y="280" width="200" height="90" class="box"/>
+  <text x="140" y="315" class="label">Ingestion</text>
+  <text x="140" y="340" class="small">Upload / text / GitHub</text>
+
+  <rect x="310" y="280" width="200" height="90" class="box"/>
+  <text x="410" y="315" class="label">Extractor</text>
+  <text x="410" y="340" class="small">Claims + exact spans</text>
+
+  <rect x="580" y="280" width="200" height="90" class="box"/>
+  <text x="680" y="315" class="label">Temporal graph</text>
+  <text x="680" y="340" class="small">Nodes / edges / as-of</text>
+
+  <rect x="850" y="280" width="200" height="90" class="box"/>
+  <text x="950" y="315" class="label">Verification</text>
+  <text x="950" y="340" class="small">Conflict / freshness</text>
+
+  <line x1="140" y1="210" x2="140" y2="280" class="arrow"/>
+  <line x1="240" y1="325" x2="310" y2="325" class="arrow"/>
+  <line x1="510" y1="325" x2="580" y2="325" class="arrow"/>
+  <line x1="780" y1="325" x2="850" y2="325" class="arrow"/>
+
+  <rect x="40" y="440" width="200" height="90" class="box"/>
+  <text x="140" y="475" class="label">TF-IDF retrieval</text>
+  <text x="140" y="500" class="small">Authorised RAG / optional LLM</text>
+
+  <rect x="310" y="440" width="200" height="90" class="box"/>
+  <text x="410" y="475" class="label">Handover engine</text>
+  <text x="410" y="500" class="small">Role-specific report</text>
+
+  <rect x="580" y="440" width="200" height="90" class="box"/>
+  <text x="680" y="475" class="label">Continuation</text>
+  <text x="680" y="500" class="small">Acknowledge / complete</text>
+
+  <rect x="850" y="440" width="200" height="90" class="box"/>
+  <text x="950" y="475" class="label">Audit trail</text>
+  <text x="950" y="500" class="small">SHA-256 hash chain</text>
+
+  <line x1="240" y1="485" x2="310" y2="485" class="arrow"/>
+  <line x1="510" y1="485" x2="580" y2="485" class="arrow"/>
+  <line x1="780" y1="485" x2="850" y2="485" class="arrow"/>
+  <line x1="410" y1="370" x2="410" y2="440" class="arrow"/>
+  <line x1="680" y1="370" x2="680" y2="440" class="arrow"/>
+  <line x1="950" y1="370" x2="950" y2="440" class="arrow"/>
+
+  <line x1="680" y1="210" x2="680" y2="280" class="dashed"/>
+  <line x1="680" y1="210" x2="410" y2="280" class="dashed"/>
+  <line x1="680" y1="210" x2="950" y2="280" class="dashed"/>
+  <line x1="680" y1="210" x2="410" y2="440" class="dashed"/>
+  <text x="40" y="590" class="legend">Solid arrows: data/workflow. Dashed arrows: pre-retrieval policy enforcement applied before every channel.</text>
+  <text x="40" y="615" class="legend">Every generated statement links to exact-offset evidence; heuristic scores are not calibrated probabilities.</text>
+  <rect x="40" y="640" width="16" height="16" fill="#0b1f3a"/>
+  <text x="66" y="653" class="legend">Client</text>
+  <rect x="150" y="640" width="16" height="16" fill="#ccfbf1" stroke="#0f766e"/>
+  <text x="176" y="653" class="legend">API / policy</text>
+  <rect x="300" y="640" width="16" height="16" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="326" y="653" class="legend">Engines / storage</text>
+</svg>

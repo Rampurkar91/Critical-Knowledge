@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html, body, #root { min-height: 100%; }
+body {
+  @apply bg-slate-50 text-ink antialiased;
+  background-image:
+    radial-gradient(circle at 85% -10%, rgba(32, 168, 154, 0.10), transparent 28rem),
+    radial-gradient(circle at -10% 20%, rgba(61, 108, 172, 0.08), transparent 24rem);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; background-clip: content-box; }
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-slate-200/80 bg-white/90 shadow-panel backdrop-blur-sm;
+  }
+  .card-dark {
+    @apply rounded-2xl border border-white/10 bg-navy-900/70 shadow-panel backdrop-blur-sm;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400/60 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary { @apply btn bg-teal-600 text-white hover:bg-teal-700 hover:shadow-glow; }
+  .btn-navy { @apply btn bg-navy-900 text-white hover:bg-navy-800; }
+  .btn-outline { @apply btn border border-slate-300 bg-white text-navy-800 hover:border-teal-400 hover:bg-teal-50; }
+  .btn-ghost { @apply btn text-slate-600 hover:bg-slate-100 hover:text-navy-900; }
+  .btn-danger { @apply btn border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100; }
+  .input {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-100;
+  }
+  .label { @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500; }
+  .badge { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold; }
+  .chip { @apply inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-600; }
+  .section-title { @apply text-lg font-bold tracking-tight text-navy-900; }
+  .muted { @apply text-sm text-slate-500; }
+  .table-head { @apply bg-slate-50/80 text-left text-[11px] font-bold uppercase tracking-wider text-slate-500; }
+  .table-cell { @apply border-t border-slate-100 px-4 py-3 text-sm text-slate-700 align-top; }
+  .link { @apply font-semibold text-teal-700 hover:text-teal-800 hover:underline; }
+  .hero-network {
+    background-image: linear-gradient(90deg, rgba(11,26,46,0.97) 0%, rgba(11,26,46,0.88) 38%, rgba(11,26,46,0.32) 72%, rgba(11,26,46,0.10) 100%), url('/hero-network.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .grid-pattern {
+    background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .evidence-quote { @apply rounded-xl border-l-4 border-teal-400 bg-slate-50 px-3 py-2 font-mono text-xs leading-relaxed text-slate-700; }
+}
+
+.sidebar-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.22) transparent; }
+.recharts-cartesian-axis-tick text { font-size: 11px; fill: #64748b; }
+.graph-node { cursor: pointer; transition: filter 160ms ease, opacity 160ms ease; }
+.graph-node:hover { filter: brightness(1.12); }
+.graph-edge { transition: opacity 160ms ease, stroke-width 160ms ease; }
+.fade-in { animation: fadeUp 0.45s ease-out both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

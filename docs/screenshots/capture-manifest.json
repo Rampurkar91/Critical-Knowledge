@@ -1,0 +1,180 @@
+{
+  "generated_at": "2026-11-09T08:27:30.558Z",
+  "mode": "static manifest from captured PNG files",
+  "browser": "headless Chromium via @sparticuz/chromium + puppeteer-core",
+  "ui_base": "http://127.0.0.1:5173",
+  "api_base": "http://127.0.0.1:8000",
+  "screenshot_count": 17,
+  "screenshots": [
+    {
+      "file": "docs/screenshots/landing.png",
+      "label": "Landing page",
+      "route": "/",
+      "role": "public",
+      "fullPage": true,
+      "bytes": 375896,
+      "captured_at": "2026-11-09T08:19:39.165Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/login.png",
+      "label": "Sign in and demo accounts",
+      "route": "/login",
+      "role": "public",
+      "fullPage": true,
+      "bytes": 134056,
+      "captured_at": "2026-11-09T08:19:41.489Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/dashboard.png",
+      "label": "Manager dashboard",
+      "route": "/dashboard",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 202662,
+      "captured_at": "2026-11-09T08:19:51.957Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/workspace.png",
+      "label": "Project workspace",
+      "route": "/workspace",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 226179,
+      "captured_at": "2026-11-09T08:20:22.377Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/sources.png",
+      "label": "Source integration",
+      "route": "/sources",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 251901,
+      "captured_at": "2026-11-09T08:20:32.081Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/graph.png",
+      "label": "Temporal knowledge graph",
+      "route": "/graph",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 571373,
+      "captured_at": "2026-11-09T08:20:39.697Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/decisions.png",
+      "label": "Decision history",
+      "route": "/decisions",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 221436,
+      "captured_at": "2026-11-09T08:20:53.845Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/verification.png",
+      "label": "Evidence verification",
+      "route": "/verification",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 220349,
+      "captured_at": "2026-11-09T08:21:10.865Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/conflicts.png",
+      "label": "Conflict detection",
+      "route": "/conflicts",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 220059,
+      "captured_at": "2026-11-09T08:21:24.577Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/risks.png",
+      "label": "Risks and dependencies",
+      "route": "/risks",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 227927,
+      "captured_at": "2026-11-09T08:21:29.561Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/review.png",
+      "label": "Review and approval centre",
+      "route": "/review",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 290371,
+      "captured_at": "2026-11-09T08:21:43.461Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/handover.png",
+      "label": "Role-specific handover report",
+      "route": "/handover",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 216260,
+      "captured_at": "2026-11-09T08:24:09.217Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/incoming.png",
+      "label": "Incoming-member dashboard",
+      "route": "/incoming",
+      "role": "engineer",
+      "fullPage": false,
+      "bytes": 240098,
+      "captured_at": "2026-11-09T08:27:29.889Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/continuity.png",
+      "label": "Project continuity dashboard",
+      "route": "/continuity",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 233614,
+      "captured_at": "2026-11-09T08:22:16.493Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/access.png",
+      "label": "Access and permissions",
+      "route": "/access",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 262907,
+      "captured_at": "2026-11-09T08:22:27.653Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/audit.png",
+      "label": "Audit history",
+      "route": "/audit",
+      "role": "manager",
+      "fullPage": false,
+      "bytes": 204443,
+      "captured_at": "2026-11-09T08:22:41.093Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    },
+    {
+      "file": "docs/screenshots/analyst-graph.png",
+      "label": "Low-clearance graph with hidden-by-policy counters",
+      "route": "/graph",
+      "role": "analyst",
+      "fullPage": false,
+      "bytes": 286028,
+      "captured_at": "2026-11-09T08:22:46.861Z",
+      "validation": "Rendered from the running app in headless Chromium; browser diagnostics are emitted by a full npm run capture."
+    }
+  ]
+}

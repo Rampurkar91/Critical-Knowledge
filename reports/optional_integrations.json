@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-11-09T08:55:27.082657+00:00",
+  "scope": "Local mock GitHub API and local OpenAI-compatible LLM adapter; disposable SQLite DB; no external network call.",
+  "external_api_calls": 0,
+  "mock_base_url": "http://127.0.0.1:37813",
+  "mock_request_count": 3,
+  "mock_github_requests": 2,
+  "mock_llm_requests": 1,
+  "mock_llm_evidence_count": 5,
+  "mock_llm_restricted_marker_present": false,
+  "disposable_database": true,
+  "results": {
+    "text_source": {
+      "status_code": 201,
+      "source_ref": "local://optional/text-source",
+      "source_id": "src_b351d393879b47008cfc"
+    },
+    "file_upload": {
+      "status_code": 201,
+      "source_ref": "local://optional/upload",
+      "source_id": "src_4077e97ca09c4ce2b36b"
+    },
+    "github_connect": {
+      "status_code": 200,
+      "repository": "knowledgebridge/mock-repo",
+      "sources_returned": 3,
+      "sources_created": 3,
+      "duplicates": 0,
+      "token_used": true
+    },
+    "extraction": {
+      "status_code": 200,
+      "keys": [
+        "claims_created",
+        "evidence_links",
+        "graph",
+        "graph_before_verification",
+        "source_results",
+        "sources_processed",
+        "sources_total",
+        "verification"
+      ],
+      "claims": null,
+      "sources": null
+    },
+    "authorised_sources_after_ingestion": 15,
+    "grounded_llm_ask": {
+      "status_code": 200,
+      "provider": "openai-compatible:knowledgebridge-grounded-mock",
+      "citation_count": 5,
+      "answer_prefix": "Grounded local mock answer: the authorised evidence identifies the next continuity actions and their supporting project records. Verify every statement against ",
+      "leakage_guard_applied": false,
+      "score_disclaimer": "Retrieval scores and reliability scores are heuristics, not calibrated probabilities."
+    }
+  }
+}
