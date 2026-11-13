@@ -24,6 +24,16 @@ class LoginRequest(KBModel):
     password: str
 
 
+class ForgotPasswordRequest(KBModel):
+    email: str = Field(min_length=3, max_length=255)
+
+
+class ResetPasswordRequest(KBModel):
+    email: str = Field(min_length=3, max_length=255)
+    token: str = Field(min_length=1)
+    new_password: str = Field(min_length=8, max_length=128)
+
+
 class OrganizationCreate(KBModel):
     name: str = Field(min_length=2, max_length=160)
 

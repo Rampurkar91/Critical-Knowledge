@@ -12,8 +12,8 @@ from ..config import settings
 from ..db import get_db, utcnow
 from ..deps import get_current_user
 from ..models import Organization, Project, ProjectMember, User
-from ..schemas import LoginRequest, OrganizationCreate, RegisterRequest
-from ..security import hash_password, verify_password
+from ..schemas import ForgotPasswordRequest, LoginRequest, OrganizationCreate, RegisterRequest, ResetPasswordRequest
+from ..security import create_password_reset_token, hash_password, verify_password, verify_password_reset_token
 from ..services.permissions import record_audit, role_policy
 from ..utils import slugify
 from .common import auth_response, meta_payload, user_dict
@@ -109,6 +109,56 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)) -> dict[str, Any
     )
     db.commit()
     return auth_response(user)
+
+
+@router.post("/auth/forgot-password")
+def forgot_password(payload: ForgotPasswordRequest, db: Session = Depends(get_db)) -> dict[str, Any]:
+    email = payload.email.strip().lower()
+    if not EMAIL_RE.fullmatch(email):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Enter a valid email address")
+    user = db.query(User).filter(User.email == email, User.is_active.is_(True)).first()
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No active account found with this email address")
+
+    reset_token = create_password_reset_token(user.email)
+    record_audit(
+        db,
+        user=user,
+        action="auth.forgot_password",
+        resource_type="user",
+        resource_id=user.id,
+        details={"email": user.email},
+    )
+    db.commit()
+    return {
+        "message": "Password reset token generated successfully. In demonstration mode, use the token below to set a new password.",
+        "email": user.email,
+        "reset_token": reset_token,
+    }
+
+
+@router.post("/auth/reset-password")
+def reset_password(payload: ResetPasswordRequest, db: Session = Depends(get_db)) -> dict[str, Any]:
+    email = payload.email.strip().lower()
+    token_email = verify_password_reset_token(payload.token)
+    if not token_email or token_email.lower() != email:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid or expired password reset token")
+
+    user = db.query(User).filter(User.email == email, User.is_active.is_(True)).first()
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Account not found")
+
+    user.password_hash = hash_password(payload.new_password)
+    record_audit(
+        db,
+        user=user,
+        action="auth.reset_password",
+        resource_type="user",
+        resource_id=user.id,
+        details={"email": user.email},
+    )
+    db.commit()
+    return {"message": "Password reset successfully. You can now sign in with your new password."}
 
 
 @router.post("/auth/demo-login")
